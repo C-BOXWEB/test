@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>なんでもダビング - あなたの思い出をデジタル化</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #333;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .pricing {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #333;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            border: 2px solid #667eea;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover {
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            transform: scale(1.05);
+        }
+        
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .price-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .features-list {
+            text-align: left;
+            margin: 30px 0;
+            line-height: 2;
+        }
+        
+        .features-list li {
+            list-style: none;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .pricing-card.featured .features-list li:before {
+            color: white;
+        }
+        
+        .contact {
+            padding: 80px 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .contact p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #666;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 80px;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">📹 なんでもダビング</div>
+                <ul>
+                    <li><a href="#features">特徴</a></li>
+                    <li><a href="#pricing">料金</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <h1>あなたの思い出をデジタル化</h1>
+            <p>ビデオテープ、写真、フィルムなど、あらゆるメディアを高品質でデジタル化します</p>
+            <button class="cta-button">今すぐ申し込む</button>
+        </div>
+    </section>
+    
+    <!-- 特徴セクション -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>サービスの特徴</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎬 高品質変換</h3>
+                    <p>最新の技術を使用して、あなたの大切な映像を高品質でデジタル化します</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📷 多様な形式対応</h3>
+                    <p>VHS、8mmフィルム、写真プリント、スライドなど、様々なメディアに対応しています</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔒 安心サポート</h3>
+                    <p>専門スタッフが丁寧にサポートします。原本も安全に保管いたします</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ 迅速納品</h3>
+                    <p>お預けいただいたメディアを素早く処理し、迅速にお届けします</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💾 複数形式出力</h3>
+                    <p>MP4、MOV、DVD など、お好みの形式でお納めできます</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌐 クラウド保存</h3>
+                    <p>オプションでクラウドにも保存できます。いつでもどこからでもアクセス可能</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 料金セクション -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>料金プラン</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>ライト</h3>
+                    <div class="price">
+                        <span class="price-label">から</span><br>
+                        ¥3,000<span style="font-size: 18px;">/本</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>VHSテープ1本</li>
+                        <li>MP4形式出力</li>
+                        <li>標準画質</li>
+                        <li>配送料込み</li>
+                    </ul>
+                    <button class="cta-button">詳細を見る</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>⭐ スタンダード</h3>
+                    <div class="price">
+                        <span class="price-label">から</span><br>
+                        ¥5,000<span style="font-size: 18px;">/本</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>複数メディア対応</li>
+                        <li>高品質デジタル化</li>
+                        <li>複数形式出力可</li>
+                        <li>クラウド保存30日無料</li>
+                        <li>配送料込み</li>
+                    </ul>
+                    <button class="cta-button" style="background: white; color: #667eea;">今すぐ申し込む</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>プレミアム</h3>
+                    <div class="price">
+                        <span class="price-label">から</span><br>
+                        ¥8,000<span style="font-size: 18px;">/本</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>全メディア対応</li>
+                        <li>4K画質対応</li>
+                        <li>色補正・修復</li>
+                        <li>クラウド保存1年</li>
+                        <li>優先配送</li>
+                    </ul>
+                    <button class="cta-button">詳細を見る</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- お問い合わせセクション -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>ご不明な点はお気軽にお問い合わせください</h2>
+            <p>電話でのご相談も受け付けています</p>
+            <button class="cta-button">お問い合わせフォーム</button>
+        </div>
+    </section>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 なんでもダビング. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
